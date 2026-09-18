@@ -59,6 +59,15 @@ DESK_HTML = """<!doctype html>
     .why { color: var(--muted); font-size: 13px; }
     ul { padding-left: 18px; margin: 8px 0 0; }
     a { color: var(--cyan); }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--cyan);
+      background: #10241f;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+    .receipt-meta { color: var(--muted); font-size: 12px; }
     footer { max-width: 1080px; margin: 0 auto; padding: 0 24px 32px; color: var(--muted); font-size: 12px; }
   </style>
 </head>
@@ -91,7 +100,7 @@ DESK_HTML = """<!doctype html>
       for (const card of brief.cards) {
         const tickers = card.tickers.length ? card.tickers.map(t => "$" + t).join(" ") : "—";
         const receipts = card.receipts.map(r =>
-          `<li><a href="${r.url}">@${r.author}</a> <code>${r.post_id}</code> — ${r.excerpt}</li>`
+          `<li><a href="${r.url}">@${r.author}</a> <span class="receipt-meta">·</span> <code>${r.post_id}</code><div class="why">${r.excerpt}</div></li>`
         ).join("");
         root.appendChild(el(`
           <article>
