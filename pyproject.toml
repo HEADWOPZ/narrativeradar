@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "narrativeradar"
+version = "0.1.0"
+description = "CT social-arb narrative spike detector → scored opportunity cards with receipts"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Kevin Lance Murray" }]
+keywords = ["crypto", "narrative", "social-arb", "crypto-twitter", "hermes"]
+requires-python = ">=3.11"
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "httpx>=0.27",
+]
+
+[project.scripts]
+narrativeradar = "narrativeradar.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/HEADWOPZ/narrativeradar"
+Repository = "https://github.com/HEADWOPZ/narrativeradar"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+narrativeradar = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
